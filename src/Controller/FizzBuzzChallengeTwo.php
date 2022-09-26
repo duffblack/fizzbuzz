@@ -29,6 +29,7 @@ class FizzBuzzChallengeTwo extends AbstractController
     #[Route('/desafio2/fizz/buzz', name: 'fizz_buzz_challenge_two', methods: ['GET', 'POST'])]
     public function fizzBuzz(Request $request, ManagerRegistry $doctrine): Response
     {
+        $result = '';
         $fizzBuzz = new FizzBuzz();
         $date = new \DateTime();
         $fizzBuzz->setCreationDate($date->format('Y-m-d H:i:s'));
@@ -41,17 +42,11 @@ class FizzBuzzChallengeTwo extends AbstractController
             $result = $this->fizzBuzzService->__invoke($fizzBuzz->getInitialNumber(), $fizzBuzz->getFinalNumber());
             $fizzBuzz->setFizzBuzz($result);
             $fizzBuzz->save($doctrine);
-
-            return $this->renderForm('challenge2.html.twig',
-                [
-                    'form' => $form,
-                    'result' => $result
-                ]);
         }
 
         return $this->renderForm('challenge2.html.twig', [
             'form' => $form,
-            'result' => ''
+            'result' => $result
         ]);
     }
 }
