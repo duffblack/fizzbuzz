@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Business\Service\FizzBuzzService;
-use App\Entity\FizzBuzz;
 use App\Form\Type\FizzBuzzType;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Infrastructure\Entity\FizzBuzz;
+use App\Infrastructure\Repository\FizzBuzzRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +23,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 class FizzBuzzChallengeTwo extends AbstractController
 {
     #[Required]
-    public ManagerRegistry $doctrine;
+    public FizzBuzzRepository $fizzBuzzRepository;
 
     public function __construct(private readonly FizzBuzzService $fizzBuzzService)
     {
@@ -46,7 +46,7 @@ class FizzBuzzChallengeTwo extends AbstractController
             $fizzBuzz = $form->getData();
             $result = $this->fizzBuzzService->__invoke($fizzBuzz->getInitialNumber(), $fizzBuzz->getFinalNumber());
             $fizzBuzz->setFizzBuzz($result);
-            $fizzBuzz->save($this->doctrine);
+            $this->fizzBuzzRepository->save($fizzBuzz, true);
         }
 
         return $this->renderForm('challenge2.html.twig', [

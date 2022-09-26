@@ -9,7 +9,6 @@ declare(strict_types=1);
  */
 namespace App\Twig;
 
-use App\Entity\FizzBuzz;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -36,7 +35,7 @@ class FizzBuzzExtension extends AbstractExtension
 
         foreach ($numberArray as $key => $eachNumber) {
             $answer[$key] = $eachNumber;
-            $isFizzBuzz = FizzBuzz::isFizzBuzz($eachNumber);
+            $isFizzBuzz = $this->isFizzBuzz($eachNumber);
             if ($isFizzBuzz['result']) {
                 $answer[$key] = $isFizzBuzz['message'];
             }
@@ -44,6 +43,29 @@ class FizzBuzzExtension extends AbstractExtension
         return implode(", ", $answer);
     }
 
+    /**
+     * check if it is divisible by both 3 and 5 and add FizzBuzz to the result
+     * @param int $number number to check
+     * @return array $result['result'] bool indicates if number meets FizzBuzz condition, $result['message'] string
+     */
+    protected function isFizzBuzz(int $number): array
+    {
+        $result = [
+            'result' => false,
+            'message' => ''
+        ];
+        $fizzBuzzDictionary = [
+            'Fizz' => 3,
+            'Buzz' => 5
+        ];
+        foreach ($fizzBuzzDictionary as $key => $eachValue) {
+            if ($number % $eachValue === 0) {
+                $result['result'] = true;
+                $result['message'] .= $key;
+            }
+        }
+        return $result;
+    }
     /**
      * @param int $initialNumber lowest number of the array
      * @param int $length  array length

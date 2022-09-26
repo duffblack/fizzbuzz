@@ -1,8 +1,15 @@
 <?php
+/*
+ * Description of
+ * @FizzBuzzRepository
+ * @author Francisco Javier Pérez Murciego
+ * @25-09-2022
+ * @copyright (c)  Francisco Javier Pérez Murciego <javionica@gmail.com>
+ */
 
-namespace App\Repository;
+namespace App\Infrastructure\Repository;
 
-use App\Entity\FizzBuzz;
+use App\Infrastructure\Entity\FizzBuzz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -38,29 +45,4 @@ class FizzBuzzRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return FizzBuzz[] Returns an array of FizzBuzz objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?FizzBuzz
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

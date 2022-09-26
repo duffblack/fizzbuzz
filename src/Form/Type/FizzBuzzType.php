@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type;
 
-use App\Entity\FizzBuzz;
+use App\Infrastructure\Entity\FizzBuzz;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

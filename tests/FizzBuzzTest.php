@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace App\Tests;
 
-use App\Entity\FizzBuzz;
+use App\Infrastructure\Entity\FizzBuzz;
 use PHPUnit\Framework\TestCase;
 
 class FizzBuzzTest extends TestCase
