@@ -18,16 +18,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class FizzBuzzChallengeTwo extends AbstractController
 {
+    #[Required]
+    public ManagerRegistry $doctrine;
+
     public function __construct(private readonly FizzBuzzService $fizzBuzzService)
     {
 
     }
 
     #[Route('/desafio2/fizz/buzz', name: 'fizz_buzz_challenge_two', methods: ['GET', 'POST'])]
-    public function fizzBuzz(Request $request, ManagerRegistry $doctrine): Response
+    public function fizzBuzz(Request $request): Response
     {
         $result = '';
         $fizzBuzz = new FizzBuzz();
@@ -41,7 +45,7 @@ class FizzBuzzChallengeTwo extends AbstractController
             $fizzBuzz = $form->getData();
             $result = $this->fizzBuzzService->__invoke($fizzBuzz->getInitialNumber(), $fizzBuzz->getFinalNumber());
             $fizzBuzz->setFizzBuzz($result);
-            $fizzBuzz->save($doctrine);
+            $fizzBuzz->save($this->doctrine);
         }
 
         return $this->renderForm('challenge2.html.twig', [
