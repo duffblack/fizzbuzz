@@ -15,23 +15,23 @@ class FizzBuzz
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $initialNumber = null;
+    private int $initialNumber;
 
     #[ORM\Column]
-    private ?int $finalNumber = null;
+    private int $finalNumber;
 
     #[ORM\Column(length: 50)]
-    private ?string $creation_date = null;
+    private string $creation_date;
 
     #[ORM\Column(length: 255)]
-    private ?string $fizzBuzz = null;
+    private string $fizzBuzz;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getInitialNumber(): ?int
+    public function getInitialNumber(): int
     {
         return $this->initialNumber;
     }
@@ -43,7 +43,7 @@ class FizzBuzz
         return $this;
     }
 
-    public function getFinalNumber(): ?int
+    public function getFinalNumber(): int
     {
         return $this->finalNumber;
     }
@@ -55,7 +55,7 @@ class FizzBuzz
         return $this;
     }
 
-    public function getCreationDate(): ?string
+    public function getCreationDate(): string
     {
         return $this->creation_date;
     }
@@ -67,7 +67,7 @@ class FizzBuzz
         return $this;
     }
 
-    public function getFizzBuzz(): ?string
+    public function getFizzBuzz(): string
     {
         return $this->fizzBuzz;
     }
