@@ -10,4 +10,6 @@ Includes:
 
 - PHPStan <br />
 Code analyser. For more information : https://phpstan.org/ <br />
-``` composer phpstan ```
+``` 
+$ composer phpstan 
+```
