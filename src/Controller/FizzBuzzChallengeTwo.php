@@ -42,6 +42,7 @@ class FizzBuzzChallengeTwo extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var FizzBuzz $fizzBuzz */
             $fizzBuzz = $form->getData();
             $result = $this->fizzBuzzService->__invoke($fizzBuzz->getInitialNumber(), $fizzBuzz->getFinalNumber());
             $fizzBuzz->setFizzBuzz($result);
